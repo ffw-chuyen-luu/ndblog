@@ -9,7 +9,6 @@ import {
 } from "next-drupal"
 
 import { NodeArticle } from "@/components/node-article"
-import { NodeBasicPage } from "@/components/node-basic-page"
 import { Layout } from "@/components/layout"
 
 interface NodePageProps {
@@ -28,7 +27,6 @@ export default function NodePage({ node }: NodePageProps) {
           content="A Next.js site powered by a Drupal backend."
         />
       </Head>
-      {node.type === "node--page" && <NodeBasicPage node={node} />}
       {node.type === "node--article" && <NodeArticle node={node} />}
     </Layout>
   )
@@ -36,7 +34,7 @@ export default function NodePage({ node }: NodePageProps) {
 
 export async function getStaticPaths(context): Promise<GetStaticPathsResult> {
   return {
-    paths: await getPathsFromContext(["node--article", "node--page"], context),
+    paths: await getPathsFromContext(["node--article"], context),
     fallback: "blocking",
   }
 }
@@ -55,7 +53,7 @@ export async function getStaticProps(
   let params = {}
   if (type === "node--article") {
     params = {
-      include: "field_image,uid",
+      include: "field_media,field_media.field_media_image,uid",
     }
   }
 
@@ -73,6 +71,6 @@ export async function getStaticProps(
     props: {
       node,
     },
-    revalidate: 900,
+    revalidate: 10,
   }
 }

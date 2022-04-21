@@ -45,7 +45,7 @@ export async function getStaticProps(
     context,
     {
       params: {
-        include: "field_image,uid",
+        include: "field_media,field_media.field_media_image,uid",
         sort: "-created",
       },
     }
