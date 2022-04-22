@@ -8,19 +8,19 @@ export function NodeArticle({ node, ...props }) {
     <article {...props}>
       <h1 className="mb-4 text-6xl font-black leading-tight">{node.title}</h1>
       <NodeMeta node={node} />
-      {node.field_image?.uri && (
+      {node.field_media?.field_media_image?.uri && (
         <figure>
           <Image
-            src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${node.field_image.uri.url}`}
+            src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${node.field_media.field_media_image.uri.url}`}
             width={768}
             height={400}
             layout="responsive"
             objectFit="cover"
-            alt={node.field_image.resourceIdObjMeta.alt}
+            alt={node.field_media.field_media_image.resourceIdObjMeta.alt}
           />
-          {node.field_image.resourceIdObjMeta.title && (
+          {node.field_media.field_media_image.resourceIdObjMeta.title && (
             <figcaption className="py-2 text-sm text-center text-gray-600">
-              {node.field_image.resourceIdObjMeta.title}
+              {node.field_media.field_media_image.resourceIdObjMeta.title}
             </figcaption>
           )}
         </figure>
@@ -44,10 +44,10 @@ export function NodeArticleTeaser({ node, ...props }) {
         </a>
       </Link>
       <NodeMeta node={node} />
-      {node.field_image?.uri && (
+      {node.field_media?.field_media_image?.uri && (
         <div>
           <Image
-            src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${node.field_image.uri.url}`}
+            src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${node.field_media.field_media_image.uri.url}`}
             width={768}
             height={480}
             layout="responsive"
