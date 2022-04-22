@@ -56,7 +56,7 @@ export function NodeArticleTeaser({ node, ...props }) {
         </div>
       )}
       <p className="mt-6 font-serif text-xl leading-loose">
-        {node.body.summary}
+        {node?.body?.summary}
       </p>
     </article>
   )
